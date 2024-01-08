@@ -53,7 +53,11 @@ estadoActual: Ruta
 
 #Generar el objeto que sera el primer estado a partir de la ciudad dada
 def generarPrimer(ciudad):
-    return Ruta(ciudad, [ciudad], 0, ciudades[ciudad])
+    if ciudades.get(ciudad) == None:
+        print("Esa ciudad no existe")
+        return None
+    else:       
+        return Ruta(ciudad, [ciudad], 0, ciudades[ciudad])
 
 #Generaremos los hijos a partir de los datos que tenemos escritos arriba
 def generarHijos(rutaActual: Ruta):
@@ -146,4 +150,7 @@ def principal(estadoInicial: Ruta):
         print(("Estado actual ite %d: " + estadoActual.ciudad + " costo: %d, ruta recorrida %s") % (iteracion, estadoActual.distanciaFinal, estadoActual.rutaRecorrida))
         print("")
 
-principal(generarPrimer("Lugoj"))
+rutaPrimer = generarPrimer("Lugoj")
+
+if rutaPrimer != None:
+    principal(rutaPrimer)
