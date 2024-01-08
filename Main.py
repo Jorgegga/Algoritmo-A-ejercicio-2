@@ -120,7 +120,7 @@ def insertarHijos():
     
 def principal(estadoInicial: Ruta):
     
-    iteracion = 1
+    iteracion = 0
     
     estadosAbiertos.append(estadoInicial)
     estadoActual = estadosAbiertos[0]
@@ -151,7 +151,7 @@ def principal(estadoInicial: Ruta):
         print(("Estado actual ite %d: " + estadoActual.ciudad + " costo: %d, ruta recorrida %s") % (iteracion, estadoActual.distanciaFinal, estadoActual.rutaRecorrida))
         print("")
 
-rutaPrimer = generarPrimer("Lugoj")
+rutaPrimer = generarPrimer("Arad")
 
 if rutaPrimer != None:
     principal(rutaPrimer)
