@@ -44,7 +44,8 @@ conexiones = {"Arad": {"Zerind": 75, "Sibiu": 140, "Timisoara": 118},
               "Timisoara": {"Arad": 118, "Lugoj": 111},
               "Urziceni": {"Bucharest": 85, "Vaslui": 142, "Hirsova": 98},
               "Vaslui": {"Iasi": 92, "Urziceni": 142},
-              "Zerind": {"Oradea": 71, "Arad": 75}}
+              "Zerind": {"Oradea": 71, "Arad": 75}
+              }
 
 estadosAbiertos: list [Ruta] = []
 estadosCerrados: list [Ruta] = []
