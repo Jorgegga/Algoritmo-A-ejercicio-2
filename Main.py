@@ -51,9 +51,11 @@ estadosCerrados: list [Ruta] = []
 hijos: list [Ruta] = []
 estadoActual: Ruta
 
+#Generar el objeto que sera el primer estado a partir de la ciudad dada
 def generarPrimer(ciudad):
     return Ruta(ciudad, [ciudad], 0, ciudades[ciudad])
 
+#Generaremos los hijos a partir de los datos que tenemos escritos arriba
 def generarHijos(rutaActual: Ruta):
     ciudad = rutaActual.ciudad
     rutaRecorrida = rutaActual.rutaRecorrida
@@ -69,6 +71,13 @@ def generarHijos(rutaActual: Ruta):
         hijo = Ruta(key, rutaAnnadir, distanciaAnnadir, distanciaFinal)
         hijos.append(hijo)
 
+#Para tratar los repetidos comprobaremos primero si el hijo esta en los estados cerrados, en caso afirmativo comprueba si la distancia recorrida del hijo es
+#menor que la del cerrado, y en caso de que asi sea es candidado a ser añadido de nuevo a la lista de abiertos.
+#Se realiza lo mismo con la lista de abiertos, salvo que en caso de que la distancia recorrida del hijo sea menor que la de la lista de abiertos, se eliminara
+#el objeto de la lista de abiertos.
+#En resumen, el hijo solo podra ser añadido a la lista de abiertos en caso de que no exista en las listas o de que la distancia recorrida sea menor a la del objeto
+#repetido que haya en alguna de las listas
+
 def tratarRepetidos():
     hijosEx = []
     
@@ -81,7 +90,7 @@ def tratarRepetidos():
                 if x.distanciaFinal < y.distanciaFinal:
                     cerradoRepe = False
                 else:
-                    abiertoRepe = True
+                    cerradoRepe = True
         
         for y in estadosAbiertos:
             if x.ciudad == y.ciudad:
@@ -97,7 +106,8 @@ def tratarRepetidos():
     
     hijos.clear()
     hijos.extend(hijosEx)
-    
+
+#Añadimos los hijos a los estados abiertos y los ordenador por distancia de menor a mayor
 def insertarHijos():
     estadosAbiertos.extend(hijos)
     estadosAbiertos.sort(key = lambda x: x.distanciaFinal)
