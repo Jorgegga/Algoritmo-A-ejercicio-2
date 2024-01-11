@@ -58,7 +58,7 @@ def generarPrimer(ciudad):
         print("Esa ciudad no existe")
         return None
     else:       
-        return Ruta(ciudad, [ciudad], 0, ciudades[ciudad])
+        principal(Ruta(ciudad, [ciudad], 0, ciudades[ciudad]))
 
 #Generaremos los hijos a partir de los datos que tenemos escritos arriba
 def generarHijos(rutaActual: Ruta):
@@ -147,11 +147,8 @@ def principal(estadoInicial: Ruta):
         print("")
         print("")
         
-        
         print(("Estado actual ite %d: " + estadoActual.ciudad + " costo: %d, ruta recorrida %s") % (iteracion, estadoActual.distanciaFinal, estadoActual.rutaRecorrida))
         print("")
 
-rutaPrimer = generarPrimer("Arad")
-
-if rutaPrimer != None:
-    principal(rutaPrimer)
+ciudad = str(input("Elige a que ciudad quieres ir: "))
+rutaPrimer = generarPrimer(ciudad)
